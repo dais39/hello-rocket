@@ -1,20 +1,25 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 #[macro_use]
 extern crate rocket;
+extern crate rocket_contrib;
+
+use serde_json::json;
+
+use rocket_contrib::json::JsonValue;
 
 #[get("/")]
-fn index() -> &'static str {
-    json!({"message": "Hello, world!"})
+fn index() -> JsonValue {
+    JsonValue::from(json!({"message": "Hello, world!"}))
 }
 
 #[get("/gb")]
-fn gb() -> &'static str {
-    json!({"message": "Goodbye!"})
+fn gb() -> JsonValue {
+    JsonValue::from(json!({"message": "Goodbye!"}))
 }
 
 #[get("/ga")]
-fn ga() -> &'static str {
-    json!({"message": "Good Afternoon!"})
+fn ga() -> JsonValue {
+    JsonValue::from(json!({"message": "Good Afternoon!"}))
 }
 
 fn main() {
